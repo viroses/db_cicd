@@ -9,4 +9,4 @@ phases:
     commands:
       - echo $PRIVATE_ACCESS_TOKEN
       - echo $COMMIT_ID
-      - mysql -h mysql-master.custom-db.com -u tester -e "show databases;"
+      - python3 ./github-parse.py $PRIVATE_ACCESS_TOKEN $COMMIT_ID
