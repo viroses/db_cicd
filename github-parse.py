@@ -1,3 +1,4 @@
+import os
 import sys
 import json
 import requests
@@ -49,7 +50,7 @@ if __name__ == "__main__":
                         str(stmt).lstrip('+').lstrip().rstrip(',') + "\" " + 
                         "D=db_cicd,t=" +
                         str(patch.split('\n')[1]).lstrip('CREATE TABLE ').rstrip('(').strip() + 
-                        " --host=mysql-master.custom-db.com --port=3306 --user=shopizer --password=shopizer2020! --execute")
+                        " --host=mysql-master.custom-db.com --port=3306 --user=tester --execute")
                         break   
         elif(changes == deletions):
             # drop table
@@ -61,10 +62,10 @@ if __name__ == "__main__":
                 for stmt in patch.split('\n'):
                     if(stmt[0:1] == '-'):
                         targetStatement = ("pt-online-schema-change --alter \"drop column " + 
-                                        str(stmt).lstrip('-').lstrip().rstrip(',') + "\" " + 
+                                        str(stmt).lstrip('-').lstrip().rstrip(',').split( )[0] + "\" " + 
                                         "D=db_cicd,t=" +
                                         str(patch.split('\n')[1]).lstrip('CREATE TABLE ').rstrip('(').strip() + 
-                                        " --host=mysql-master.custom-db.com --port=3306 --user=shopizer --password=shopizer2020! --execute")
+                                        " --host=mysql-master.custom-db.com --port=3306 --user=tester --execute")
                         break
         elif(changes == (additions+deletions)):
             # modify column
@@ -74,10 +75,11 @@ if __name__ == "__main__":
                     str(stmt).lstrip('+').lstrip().rstrip(',') + "\" " + 
                     "D=db_cicd,t=" +
                     str(patch.split('\n')[1]).lstrip('CREATE TABLE ').rstrip('(').strip() + 
-                    " --host=mysql-master.custom-db.com --port=3306 --user=shopizer --password=shopizer2020! --execute")
+                    " --host=mysql-master.custom-db.com --port=3306 --user=tester --execute")
                     break
     else:
         # this is not a table
         targetStatement = "mysql --version"
     
-    print(targetStatement)
+    # print(targetStatement)
+    os.system(targetStatement)
