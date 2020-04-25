@@ -9,3 +9,4 @@ phases:
     commands:
       - echo $PRIVATE_ACCESS_TOKEN
       - echo $COMMIT_ID
+      - ./github-parse.py $PRIVATE_ACCESS_TOKEN $COMMIT_ID
