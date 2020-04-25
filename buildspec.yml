@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - apt-get update && apt-get -y install percona-toolkit mysql-client jq python3-pip python3-dev && pip3 install --upgrade awscli
+      - apt-get update && apt-get -y install percona-toolkit mysql-client && pip3 install --upgrade awscli
 
   build:
     commands:
