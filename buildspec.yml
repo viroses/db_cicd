@@ -10,3 +10,5 @@ phases:
       - python3 --version
       - pt-online-schema-change --version
       - mysql --version
+      - echo $PRIVATE_ACCESS_TOKEN
+      - echo $COMMIT_ID
