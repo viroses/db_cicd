@@ -9,3 +9,4 @@ phases:
     commands:
       - echo $PRIVATE_ACCESS_TOKEN
       - echo $COMMIT_ID
+      - uname -a
