@@ -81,5 +81,5 @@ if __name__ == "__main__":
         # this is not a table
         targetStatement = "mysql --version"
     
-    # print(targetStatement)
+    print(targetStatement)
     os.system(targetStatement)
