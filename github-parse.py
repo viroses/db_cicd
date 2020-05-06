@@ -49,7 +49,7 @@ if __name__ == "__main__":
                         targetStatement = ("pt-online-schema-change --alter \"add column " + 
                         str(stmt).lstrip('+').lstrip().rstrip(',') + "\" " + 
                         "D=db_cicd,t=" +
-                        str(patch.split('\n')[1]).upper().lstrip('CREATE TABLE ').rstrip('(').strip() + 
+                        str(patch.split('\n')[1]).upper().lstrip('CREATE TABLE').rstrip('(').strip() + 
                         " --host=mysql-master.custom-db.com --port=3306 --user=tester --execute")
                         break   
         elif(changes == deletions):
