@@ -49,14 +49,14 @@ if __name__ == "__main__":
                         targetStatement = ("pt-online-schema-change --alter \"add column " + 
                         str(stmt).lstrip('+').lstrip().rstrip(',') + "\" " + 
                         "D=db_cicd,t=" +
-                        str(patch.split('\n')[1]).upper().lstrip('CREATE TABLE').rstrip('(').strip() + 
+                        str(patch.split('\n')[1]).lstrip('CREATE TABLE ').rstrip('(').strip() + 
                         " --host=mysql-master.custom-db.com --port=3306 --user=tester --execute")
                         break   
         elif(changes == deletions):
             # drop table
             if(int(patch.split(',')[2][0:1]) < 1):
                 targetStatement = ("mysql -h mysql-master.custom-db.com -u tester -D db_cicd -e \"drop table " + 
-                                str(patch.split('\n')[1]).upper().lstrip('-CREATE TABLE ').rstrip('(').strip() + ";\"")
+                                str(patch.split('\n')[1]).lstrip('-CREATE TABLE ').rstrip('(').strip() + ";\"")
             # drop column
             else:
                 for stmt in patch.split('\n'):
@@ -64,7 +64,7 @@ if __name__ == "__main__":
                         targetStatement = ("pt-online-schema-change --alter \"drop column " + 
                                         str(stmt).lstrip('-').lstrip().rstrip(',').split( )[0] + "\" " + 
                                         "D=db_cicd,t=" +
-                                        str(patch.split('\n')[1]).upper().lstrip('CREATE TABLE ').rstrip('(').strip() + 
+                                        str(patch.split('\n')[1]).lstrip('CREATE TABLE ').rstrip('(').strip() + 
                                         " --host=mysql-master.custom-db.com --port=3306 --user=tester --execute")
                         break
         elif(changes == (additions+deletions)):
@@ -74,7 +74,7 @@ if __name__ == "__main__":
                     targetStatement = ("pt-online-schema-change --alter \"modify column " + 
                     str(stmt).lstrip('+').lstrip().rstrip(',') + "\" " + 
                     "D=db_cicd,t=" +
-                    str(patch.split('\n')[1]).upper().lstrip('CREATE TABLE ').rstrip('(').strip() + 
+                    str(patch.split('\n')[1]).lstrip('CREATE TABLE ').rstrip('(').strip() + 
                     " --host=mysql-master.custom-db.com --port=3306 --user=tester --execute")
                     break
     else:
